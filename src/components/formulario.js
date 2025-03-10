@@ -8,7 +8,7 @@ function Formulario() {
     emailState: true,
     passwordState: true
   });
-  const [emailValidated, setEmailValidated] = useState(false); // Controla si se debe mostrar el error
+  const [emailValidated, setEmailValidated] = useState(false); 
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -27,7 +27,6 @@ function Formulario() {
     const password = e.target.value;
     setFormValues({ ...formValues, password });
 
-    // Validar contraseña en tiempo real
     setValidationStates({ ...validationStates, passwordState: validatePassword(password) });
   };
 
@@ -38,7 +37,7 @@ function Formulario() {
   const clickSubmit = () => {
     const isEmailValid = validateEmail(formValues.email);
 
-    setEmailValidated(true); // Indica que el email ya se validó al hacer submit
+    setEmailValidated(true); 
 
     setValidationStates((prev) => ({
       ...prev,
@@ -46,7 +45,7 @@ function Formulario() {
     }));
 
     if (!isEmailValid) {
-      return; // No enviar el formulario si el email no es válido
+      return; 
     }
 
   };
@@ -56,7 +55,6 @@ function Formulario() {
       <h1>Ejemplo de formularios!</h1>
 
       <Form>
-        {/* EMAIL */}
         <Form.Group className="mb-6" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control 
@@ -64,14 +62,13 @@ function Formulario() {
             placeholder="Enter email" 
             onChange={handleEmailChange} 
             value={formValues.email} 
-            isInvalid={emailValidated && !validationStates.emailState} // Solo mostrar si se ha hecho submit
+            isInvalid={emailValidated && !validationStates.emailState}
           />
           <Form.Control.Feedback type="invalid">
             Your email should follow an established format
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* PASSWORD */}
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control 
@@ -86,7 +83,6 @@ function Formulario() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* SELECT */}
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Label>Favorite Class</Form.Label>
           <Form.Select onChange={handleSelectChange}>
@@ -95,7 +91,6 @@ function Formulario() {
           </Form.Select>
         </Form.Group>
 
-        {/* BOTÓN */}
         <Button variant="primary" onClick={clickSubmit}>
           Submit
         </Button>
